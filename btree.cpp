@@ -93,7 +93,7 @@ class BTree {
             if(index < root->curNumNodes && root->keys[index] == value)
             { printf("%d Already in the B-Tree\n", value); return;}
             NodePtr_t next_node = root->children[index];
-            if(next_node->curNumNodes==MaxNumNodes) {
+            if(ismaximal(next_node)) {
                 // split the next node
                 int mid_index = (next_node->curNumNodes)/2;
                 NodePtr_t new_left = new Node_t(MaxNumNodes);
