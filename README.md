@@ -1,4 +1,4 @@
-# A naive B-Tree implementation using c++
+# A naive B-Tree implementation using C++
 
 ## Run
 ```bash
