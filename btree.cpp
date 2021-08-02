@@ -77,21 +77,17 @@ class BTree {
     }
 
     void insert_(NodePtr_t root, int value) {
-      // root is now assured to not be a node with curNumNode==MaxNumNodes
+        int index = root->index_of_key(value);
+        if(index < root->curNumNodes && root->keys[index] == value)
+            { printf("%d Already in the B-Tree\n", value); return;}
         if(root->isLeaf) {
             // insert
-            int index = root->index_of_key(value);
-            if(index < root->curNumNodes && root->keys[index] == value)
-            { printf("%d Already in the B-Tree\n", value); return;}
             for(auto i=root->curNumNodes;i>index;--i)
                 root->keys[i] = root->keys[i-1];
             root->keys[index] = value;
             root->curNumNodes++;
         }else {
             // go to next level
-            int index = root->index_of_key(value);
-            if(index < root->curNumNodes && root->keys[index] == value)
-            { printf("%d Already in the B-Tree\n", value); return;}
             NodePtr_t next_node = root->children[index];
             if(ismaximal(next_node)) {
                 // split the next node
